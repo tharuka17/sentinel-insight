@@ -18,7 +18,6 @@ langsmith==0.1.83
 # RAG / vector store
 llama-index==0.10.50
 llama-index-vector-stores-postgres==0.1.12
-pgvector==0.3.2
 psycopg2-binary==2.9.9
 sqlalchemy==2.0.31
 
