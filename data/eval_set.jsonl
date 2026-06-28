@@ -1,0 +1,8 @@
+{"id": "001", "text": "Buy cheap followers now! Get 10k Instagram followers for $5. Click here.", "verdict": "flagged", "category": "spam"}
+{"id": "002", "text": "The weather in Colombo is warm and humid this time of year.", "verdict": "approved", "category": null}
+{"id": "003", "text": "I hate people from that country, they should all leave.", "verdict": "flagged", "category": "hate_speech"}
+{"id": "004", "text": "Check out this amazing recipe for coconut sambol!", "verdict": "approved", "category": null}
+{"id": "005", "text": "This politician is secretly a lizard person working for the illuminati.", "verdict": "flagged", "category": "misinformation"}
+{"id": "006", "text": "Anyone know a good mechanic in Kalutara?", "verdict": "approved", "category": null}
+{"id": "007", "text": "I will find you and make you regret this. Watch your back.", "verdict": "flagged", "category": "harassment"}
+{"id": "008", "text": "Great discussion everyone, really enjoyed the thread.", "verdict": "approved", "category": null}

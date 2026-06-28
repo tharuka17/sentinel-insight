@@ -1,0 +1,54 @@
+# API & async
+fastapi==0.111.0
+uvicorn[standard]==0.30.1
+python-multipart==0.0.9
+httpx==0.27.0
+
+# Task queue
+celery==5.4.0
+redis==5.0.6
+
+# LLM orchestration
+langchain==0.2.6
+langchain-openai==0.1.13
+langchain-community==0.2.6
+langgraph==0.2.4
+langsmith==0.1.83
+
+# RAG / vector store
+llama-index==0.10.50
+llama-index-vector-stores-postgres==0.1.12
+pgvector==0.3.2
+psycopg2-binary==2.9.9
+sqlalchemy==2.0.31
+
+# Multimodal models
+transformers==4.42.3
+torch==2.3.1
+openai-whisper==20231117
+Pillow==10.3.0
+sentence-transformers==3.0.1
+
+# Database
+alembic==1.13.1
+
+# Observability
+prometheus-fastapi-instrumentator==7.0.0
+prometheus-client==0.20.0
+
+# Dashboard
+streamlit==1.36.0
+plotly==5.22.0
+pandas==2.2.2
+
+# Evaluation
+datasets==2.20.0
+scikit-learn==1.5.1
+
+# Utilities
+pydantic==2.7.4
+pydantic-settings==2.3.4
+python-dotenv==1.0.1
+loguru==0.7.2
+tenacity==8.4.1
+python-magic==0.4.27
