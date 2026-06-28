@@ -1,5 +1,6 @@
 from fastapi import APIRouter
-import json, os
+import json
+import os
 
 router = APIRouter()
 

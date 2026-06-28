@@ -2,7 +2,6 @@
 Audio agent — transcribes audio using OpenAI Whisper, then passes transcript to the verdict pipeline.
 """
 
-import io
 import tempfile
 import os
 import whisper

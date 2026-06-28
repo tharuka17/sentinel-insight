@@ -15,7 +15,6 @@ from app.agents.image_agent import analyse_image
 from app.agents.audio_agent import analyse_audio
 from app.agents.rag_agent import retrieve_policy
 from app.agents.verdict_agent import generate_verdict
-from app.core.config import settings
 
 
 class PipelineState(TypedDict):

@@ -2,13 +2,12 @@
 Sentinel API — main FastAPI application.
 """
 
-from fastapi import FastAPI, UploadFile, File, HTTPException
+from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from prometheus_fastapi_instrumentator import Instrumentator
 from loguru import logger
 
 from app.api.routers import moderate, health, eval_router
-from app.core.config import settings
 from app.core.database import init_db
 
 app = FastAPI(
