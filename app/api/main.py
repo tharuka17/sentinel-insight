@@ -4,15 +4,16 @@ Sentinel API — main FastAPI application.
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from prometheus_fastapi_instrumentator import Instrumentator
 from loguru import logger
+from prometheus_fastapi_instrumentator import Instrumentator
 
-from app.api.routers import moderate, health, eval_router
+from app.api.routers import eval_router, health, moderate
 from app.core.database import init_db
 
 app = FastAPI(
     title="Sentinel Content Intelligence API",
-    description="Multimodal content moderation pipeline with RAG-powered policy enforcement.",
+    description="Multimodal content moderation pipeline with " \
+    "RAG-powered policy enforcement.",
     version="1.0.0",
 )
 

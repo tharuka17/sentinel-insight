@@ -5,7 +5,6 @@ Optionally runs a cheap zero-shot pre-screen to skip the LLM for clearly safe co
 
 from loguru import logger
 
-
 # Categories for zero-shot pre-screen
 VIOLATION_LABELS = [
     "hate speech",

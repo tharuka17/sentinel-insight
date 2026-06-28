@@ -2,10 +2,11 @@
 POST /api/v1/moderate — accepts text, image, or audio and returns a moderation verdict.
 """
 
-import magic
-from fastapi import APIRouter, UploadFile, File, Form, HTTPException
-from pydantic import BaseModel
 from typing import Optional
+
+import magic
+from fastapi import APIRouter, File, Form, HTTPException, UploadFile
+from pydantic import BaseModel
 
 from app.agents.orchestrator import run_pipeline
 from app.core.celery_app import celery_app

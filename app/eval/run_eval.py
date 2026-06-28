@@ -2,7 +2,9 @@
 Sentinel evaluation harness.
 
 Usage:
-    python -m app.eval.run_eval --dataset data/eval_set.jsonl --output reports/eval_report.json
+    python -m app.eval.run_eval 
+    --dataset data/eval_set.jsonl 
+    --output reports/eval_report.json
 
 Tracks:
 - Precision / recall / F1 per violation category
@@ -15,12 +17,12 @@ Tracks:
 import argparse
 import asyncio
 import json
+import statistics
 import time
 from pathlib import Path
-import statistics
 
-from sklearn.metrics import precision_recall_fscore_support
 from loguru import logger
+from sklearn.metrics import precision_recall_fscore_support
 
 from app.agents.orchestrator import run_pipeline
 

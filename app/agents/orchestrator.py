@@ -7,13 +7,14 @@ Graph:
                               rag_policy_lookup → llm_verdict → calibrate → END
 """
 
-from typing import TypedDict, Optional, Literal
-from langgraph.graph import StateGraph, END
+from typing import Literal, Optional, TypedDict
 
-from app.agents.text_agent import analyse_text
-from app.agents.image_agent import analyse_image
+from langgraph.graph import END, StateGraph
+
 from app.agents.audio_agent import analyse_audio
+from app.agents.image_agent import analyse_image
 from app.agents.rag_agent import retrieve_policy
+from app.agents.text_agent import analyse_text
 from app.agents.verdict_agent import generate_verdict
 
 

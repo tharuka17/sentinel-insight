@@ -1,10 +1,12 @@
 """
-Verdict agent — calls the LLM with content + policy context and extracts a structured decision.
+Verdict agent — calls the LLM with content + 
+policy context and extracts a structured decision.
 """
 
 import json
+
+from langchain_core.messages import HumanMessage, SystemMessage
 from langchain_openai import ChatOpenAI
-from langchain_core.messages import SystemMessage, HumanMessage
 from loguru import logger
 
 from app.core.config import settings
@@ -68,7 +70,7 @@ async def generate_verdict(state: dict) -> dict:
             "category": None,
             "confidence": 0.5,
             "policy_rule_ids": [],
-            "reasoning": "LLM response could not be parsed; escalating for human review.",
+            "reasoning": "LLM response could not be parsed;escalating for human review."
         }
     except Exception as e:
         logger.error(f"LLM call failed: {e}")

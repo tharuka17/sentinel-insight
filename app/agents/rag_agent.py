@@ -3,9 +3,9 @@ RAG agent — retrieves the most relevant policy chunks for a given content summ
 Uses LlamaIndex + pgvector.
 """
 
-from llama_index.core import VectorStoreIndex, Settings
-from llama_index.vector_stores.postgres import PGVectorStore
+from llama_index.core import Settings, VectorStoreIndex
 from llama_index.embeddings.huggingface import HuggingFaceEmbedding
+from llama_index.vector_stores.postgres import PGVectorStore
 from loguru import logger
 
 from app.core.config import settings

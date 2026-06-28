@@ -4,10 +4,11 @@ The caption feeds into the RAG + verdict pipeline.
 """
 
 import io
-from PIL import Image
-from transformers import Blip2Processor, Blip2ForConditionalGeneration
+
 import torch
 from loguru import logger
+from PIL import Image
+from transformers import Blip2ForConditionalGeneration, Blip2Processor
 
 _processor = None
 _model = None

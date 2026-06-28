@@ -1,9 +1,11 @@
 """
-Audio agent — transcribes audio using OpenAI Whisper, then passes transcript to the verdict pipeline.
+Audio agent — transcribes audio using OpenAI Whisper, 
+then passes transcript to the verdict pipeline.
 """
 
-import tempfile
 import os
+import tempfile
+
 import whisper
 from loguru import logger
 
