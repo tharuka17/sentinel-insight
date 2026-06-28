@@ -2,6 +2,7 @@
 Image agent — generates a text caption from an image using BLIP-2.
 The caption feeds into the RAG + verdict pipeline.
 """
+
 import io
 from PIL import Image
 from transformers import Blip2Processor, Blip2ForConditionalGeneration

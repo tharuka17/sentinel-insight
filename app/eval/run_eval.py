@@ -11,6 +11,7 @@ Tracks:
 - Latency p50 / p99
 - Cost-per-decision estimate
 """
+
 import argparse
 import asyncio
 import json
@@ -25,8 +26,14 @@ from loguru import logger
 from app.agents.orchestrator import run_pipeline
 
 VALID_RULE_IDS = {
-    "HS-001", "HS-002", "SP-001", "SP-002",
-    "AC-001", "VI-001", "MI-001", "HA-001",
+    "HS-001",
+    "HS-002",
+    "SP-001",
+    "SP-002",
+    "AC-001",
+    "VI-001",
+    "MI-001",
+    "HA-001",
 }
 
 
@@ -37,8 +44,7 @@ async def evaluate_single(example: dict) -> dict:
 
     # Hallucination check: any cited rule IDs that don't exist?
     hallucinated = [
-        r for r in (result.get("policy_rule_ids") or [])
-        if r not in VALID_RULE_IDS
+        r for r in (result.get("policy_rule_ids") or []) if r not in VALID_RULE_IDS
     ]
 
     return {
@@ -84,7 +90,9 @@ async def run_eval(dataset_path: str, output_path: str):
         }
 
     latencies = [r["latency_ms"] for r in results]
-    hallucination_rate = sum(1 for r in results if r["hallucinated_rules"]) / len(results)
+    hallucination_rate = sum(1 for r in results if r["hallucinated_rules"]) / len(
+        results
+    )
 
     report = {
         "total_examples": len(examples),
@@ -101,7 +109,9 @@ async def run_eval(dataset_path: str, output_path: str):
 
     logger.info(f"Eval complete. Report saved to {output_path}")
     logger.info(f"Hallucination rate: {hallucination_rate:.1%}")
-    logger.info(f"Latency p50: {report['latency_p50_ms']}ms  p99: {report['latency_p99_ms']}ms")
+    logger.info(
+        f"Latency p50: {report['latency_p50_ms']}ms  p99: {report['latency_p99_ms']}ms"
+    )
     return report
 
 

@@ -2,6 +2,7 @@
 Text agent — passes text through to the RAG pipeline.
 Optionally runs a cheap zero-shot pre-screen to skip the LLM for clearly safe content.
 """
+
 from loguru import logger
 
 

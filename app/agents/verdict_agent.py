@@ -1,6 +1,7 @@
 """
 Verdict agent — calls the LLM with content + policy context and extracts a structured decision.
 """
+
 import json
 from langchain_openai import ChatOpenAI
 from langchain_core.messages import SystemMessage, HumanMessage
@@ -36,25 +37,28 @@ async def generate_verdict(state: dict) -> dict:
     content = state.get("content_summary") or state.get("text") or ""
     chunks = state.get("policy_chunks") or []
 
-    policy_context = "\n\n".join(
-        f"[{c['rule_id']}] {c['text']}" for c in chunks
-    ) or "No specific policy rules retrieved."
+    policy_context = (
+        "\n\n".join(f"[{c['rule_id']}] {c['text']}" for c in chunks)
+        or "No specific policy rules retrieved."
+    )
 
     human_msg = f"CONTENT:\n{content}\n\nPOLICY EXCERPTS:\n{policy_context}"
 
     llm = ChatOpenAI(
         base_url=settings.VLLM_BASE_URL,
-        api_key="not-needed",          # vLLM doesn't need a real key
+        api_key="not-needed",  # vLLM doesn't need a real key
         model=settings.VLLM_MODEL,
         temperature=0.0,
         max_tokens=512,
     )
 
     try:
-        response = await llm.ainvoke([
-            SystemMessage(content=SYSTEM_PROMPT),
-            HumanMessage(content=human_msg),
-        ])
+        response = await llm.ainvoke(
+            [
+                SystemMessage(content=SYSTEM_PROMPT),
+                HumanMessage(content=human_msg),
+            ]
+        )
         raw = response.content.strip()
         data = json.loads(raw)
     except json.JSONDecodeError:
@@ -71,7 +75,10 @@ async def generate_verdict(state: dict) -> dict:
         raise
 
     # Apply confidence calibration threshold
-    if data["verdict"] == "flagged" and data["confidence"] < settings.CONFIDENCE_THRESHOLD:
+    if (
+        data["verdict"] == "flagged"
+        and data["confidence"] < settings.CONFIDENCE_THRESHOLD
+    ):
         data["verdict"] = "escalated"
         data["reasoning"] += " (Confidence below threshold — escalated.)"
 

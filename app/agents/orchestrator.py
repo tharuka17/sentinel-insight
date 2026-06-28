@@ -6,6 +6,7 @@ Graph:
                                          ↓
                               rag_policy_lookup → llm_verdict → calibrate → END
 """
+
 from typing import TypedDict, Optional, Literal
 from langgraph.graph import StateGraph, END
 
@@ -25,7 +26,7 @@ class PipelineState(TypedDict):
     # routing
     modality: Optional[Literal["text", "image", "audio"]]
     # intermediate
-    content_summary: Optional[str]   # normalised text representation
+    content_summary: Optional[str]  # normalised text representation
     policy_chunks: Optional[list]
     # output
     verdict: Optional[str]
@@ -54,11 +55,11 @@ async def run_pipeline(payload: dict) -> dict:
     graph = StateGraph(PipelineState)
 
     graph.add_node("detect_modality", detect_modality)
-    graph.add_node("text_agent",   analyse_text)
-    graph.add_node("image_agent",  analyse_image)
-    graph.add_node("audio_agent",  analyse_audio)
-    graph.add_node("rag_lookup",   retrieve_policy)
-    graph.add_node("verdict",      generate_verdict)
+    graph.add_node("text_agent", analyse_text)
+    graph.add_node("image_agent", analyse_image)
+    graph.add_node("audio_agent", analyse_audio)
+    graph.add_node("rag_lookup", retrieve_policy)
+    graph.add_node("verdict", generate_verdict)
 
     graph.set_entry_point("detect_modality")
     graph.add_conditional_edges(
@@ -88,10 +89,10 @@ async def run_pipeline(payload: dict) -> dict:
     final_state = await app.ainvoke(initial_state)
 
     return {
-        "verdict":          final_state["verdict"],
-        "category":         final_state["category"],
-        "confidence":       final_state["confidence"],
-        "policy_rule_ids":  final_state["policy_rule_ids"],
-        "reasoning":        final_state["reasoning"],
-        "modality":         final_state["modality"],
+        "verdict": final_state["verdict"],
+        "category": final_state["category"],
+        "confidence": final_state["confidence"],
+        "policy_rule_ids": final_state["policy_rule_ids"],
+        "reasoning": final_state["reasoning"],
+        "modality": final_state["modality"],
     }

@@ -1,6 +1,7 @@
 """
 Audio agent — transcribes audio using OpenAI Whisper, then passes transcript to the verdict pipeline.
 """
+
 import io
 import tempfile
 import os
@@ -14,7 +15,9 @@ def _load_whisper():
     global _model
     if _model is None:
         logger.info("Loading Whisper model...")
-        _model = whisper.load_model("base")   # swap to "small" / "medium" for better accuracy
+        _model = whisper.load_model(
+            "base"
+        )  # swap to "small" / "medium" for better accuracy
         logger.info("Whisper loaded.")
 
 

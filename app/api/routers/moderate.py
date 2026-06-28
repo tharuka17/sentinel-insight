@@ -1,6 +1,7 @@
 """
 POST /api/v1/moderate — accepts text, image, or audio and returns a moderation verdict.
 """
+
 import magic
 from fastapi import APIRouter, UploadFile, File, Form, HTTPException
 from pydantic import BaseModel
@@ -13,13 +14,13 @@ router = APIRouter()
 
 
 class ModerationResult(BaseModel):
-    verdict: str                     # "approved" | "flagged" | "escalated"
-    category: Optional[str]          # e.g. "hate_speech"
-    confidence: float                # 0.0 – 1.0
-    policy_rule_ids: list[str]       # cited policy chunks
-    reasoning: str                   # LLM explanation
-    modality: str                    # "text" | "image" | "audio"
-    job_id: Optional[str] = None     # async job id if queued
+    verdict: str  # "approved" | "flagged" | "escalated"
+    category: Optional[str]  # e.g. "hate_speech"
+    confidence: float  # 0.0 – 1.0
+    policy_rule_ids: list[str]  # cited policy chunks
+    reasoning: str  # LLM explanation
+    modality: str  # "text" | "image" | "audio"
+    job_id: Optional[str] = None  # async job id if queued
 
 
 @router.post("/moderate", response_model=ModerationResult)
